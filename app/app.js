@@ -9,22 +9,6 @@ import schema from './schema';
 const app = express();
 const cors = require("cors");
 
-mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-}, (error) => {
-    if (error) {
-        console.error(error);
-    } else {
-        app.listen(process.env.LISTEN_PORT || 3001, () => {
-            console.log('Listening on port 3001');
-        });
-        console.info('Connect with database established');
-    }
-});
-
 app.get('*', async (req,res) => {
     let filename = req.path.slice(1)
 
@@ -82,6 +66,22 @@ app.delete('*', async (req,res) => {
 app.use('*', (req,res) => {
     res.sendStatus(404).end()
 })
+
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+}, (error) => {
+    if (error) {
+        console.error(error);
+    } else {
+        app.listen(process.env.LISTEN_PORT || 3001, () => {
+            console.log('Listening on port 3001');
+        });
+        console.info('Connect with database established');
+    }
+});
 
 process.on('SIGINT', () => {
     mongoose.connection.close(function () {
