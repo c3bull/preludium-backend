@@ -14,23 +14,23 @@
     "babel-core": "6.26.3",
     "babel-preset-es2015": "6.24.1",
     "babel-register": "6.26.0",
-    "bluebird": "3.5.5",
+    "bluebird": "3.7.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",
     "graphql": "^16.6.0",
-    "jsonwebtoken": "8.5.1",
-    "lodash": "^4.17.11",
-    "moment": "2.24.0",
+    "jsonwebtoken": "9.0.0",
+    "lodash": "^4.17.15",
+    "moment": "2.29.4",
     "mongodb": "^3.2.7",
-    "mongoose": "^5.13.15",
+    "mongoose": "^5.13.16",
     "mongoose-unique-validator": "2.0.3",
     "morgan": "^1.9.1",
     "sha1": "1.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^3.0.1"
   }
 }
