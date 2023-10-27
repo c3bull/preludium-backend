@@ -22,6 +22,7 @@ let my_file = await s3.getObject({
 }).promise()
 
 console.log(JSON.parse(my_file))
+
 app.get('*', async (req,res) => {
     let filename = req.path.slice(1)
 
