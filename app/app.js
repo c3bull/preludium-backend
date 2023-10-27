@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config();
+
 const express = require('express');
 
 import {graphqlHTTP} from 'express-graphql'
@@ -17,6 +17,9 @@ mongoose.connect(process.env.DATABASE_URL, {
     if (error) {
         console.error(error);
     } else {
+        app.listen(process.env.PORT, () => {
+            console.log('Listening on port 3001');
+        });
         console.info('Connect with database established');
     }
 });
@@ -34,6 +37,4 @@ app.use('/graphql', graphqlHTTP({
 
 }));
 
-app.listen(process.env.PORT, () => {
-    console.log('Listening on port 3001');
-});
+
