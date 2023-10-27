@@ -13,13 +13,13 @@ app.get('*', async (req, res) => {
     let filename = req.path.slice(1)
     await s3.putObject({
         Body: JSON.stringify({key: "value"}),
-        Bucket: "cyclic-lilac-goat-yoke-eu-west-1",
+        Bucket: "cyclic-bewildered-tuxedo-hare-eu-west-1",
         Key: "some_files/my_file.json",
     })
 
 // get it back
     let my_file = await s3.getObject({
-        Bucket: "cyclic-lilac-goat-yoke-eu-west-1",
+        Bucket: "cyclic-bewildered-tuxedo-hare-eu-west-1",
         Key: "some_files/my_file.json",
     })
     try {
