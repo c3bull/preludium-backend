@@ -15,18 +15,18 @@ app.get('*', async (req, res) => {
         Body: JSON.stringify({key: "value"}),
         Bucket: "cyclic-lilac-goat-yoke-eu-west-1",
         Key: "some_files/my_file.json",
-    }).promise()
+    })
 
 // get it back
     let my_file = await s3.getObject({
         Bucket: "cyclic-lilac-goat-yoke-eu-west-1",
         Key: "some_files/my_file.json",
-    }).promise()
+    })
     try {
         let s3File = await s3.getObject({
             Bucket: process.env.BUCKET,
             Key: filename,
-        }).promise()
+        })
 
         res.set('Content-type', s3File.ContentType)
         res.send(s3File.Body.toString()).end()
