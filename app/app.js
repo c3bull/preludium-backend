@@ -1,4 +1,3 @@
-
 const express = require('express');
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3()
@@ -9,21 +8,21 @@ import schema from './schema';
 const app = express();
 const cors = require("cors");
 // store something
-await s3.putObject({
-    Body: JSON.stringify({key:"value"}),
-    Bucket: "cyclic-thankful-gown-ox-eu-west-1",
+s3.putObject({
+    Body: JSON.stringify({key: "value"}),
+    Bucket: "cyclic-lilac-goat-yoke-eu-west-1",
     Key: "some_files/my_file.json",
 }).promise()
 
 // get it back
-let my_file = await s3.getObject({
-    Bucket: "cyclic-thankful-gown-ox-eu-west-1",
+let my_file = s3.getObject({
+    Bucket: "cyclic-lilac-goat-yoke-eu-west-1",
     Key: "some_files/my_file.json",
 }).promise()
 
 console.log(JSON.parse(my_file))
 
-app.get('*', async (req,res) => {
+app.get('*', async (req, res) => {
     let filename = req.path.slice(1)
 
     try {
@@ -47,7 +46,7 @@ app.get('*', async (req,res) => {
 
 
 // curl -i -XPUT --data '{"k1":"value 1", "k2": "value 2"}' -H 'Content-type: application/json' https://some-app.cyclic.app/myFile.txt
-app.put('*', async (req,res) => {
+app.put('*', async (req, res) => {
     let filename = req.path.slice(1)
 
     console.log(typeof req.body)
@@ -63,7 +62,7 @@ app.put('*', async (req,res) => {
 })
 
 // curl -i -XDELETE https://some-app.cyclic.app/myFile.txt
-app.delete('*', async (req,res) => {
+app.delete('*', async (req, res) => {
     let filename = req.path.slice(1)
 
     await s3.deleteObject({
@@ -77,7 +76,7 @@ app.delete('*', async (req,res) => {
 
 // /////////////////////////////////////////////////////////////////////////////
 // Catch all handler for all other request.
-app.use('*', (req,res) => {
+app.use('*', (req, res) => {
     res.sendStatus(404).end()
 })
 
