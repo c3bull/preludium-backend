@@ -17,7 +17,7 @@ mongoose.connect(process.env.DATABASE_URL, {
     if (error) {
         console.error(error);
     } else {
-        app.listen(process.env.PORT, () => {
+        app.listen(process.env.LISTEN_PORT, () => {
             console.log('Listening on port 3001');
         });
         console.info('Connect with database established');
