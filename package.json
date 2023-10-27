@@ -4,7 +4,7 @@
   "description": "",
   "main": "app/app.js",
   "scripts": {
-    "build": "./node_modules/babel-cli/bin/babel.js src --out-dir lib --plugins transform-react-jsx --presets es2015",
+    "build": "npm i --legacy-peer-deps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
