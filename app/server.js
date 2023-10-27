@@ -17,6 +17,10 @@ mongoose.connect(process.env.DATABASE_URL, {
     if (error) {
         console.error(error);
     } else {
+        app.listen(process.env.LISTEN_PORT, () => {
+            console.log('Listening on port 3001');
+        });
+
         console.info('Connect with database established');
     }
 });
@@ -33,7 +37,3 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 
 }));
-
-app.listen(process.env.LISTEN_PORT, () => {
-    console.log('Listening on port 3001');
-});
