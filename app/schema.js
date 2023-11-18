@@ -166,6 +166,7 @@ const OrderType = new GraphQLObjectType({
         address: {type: GraphQLString},
         status: {type: GraphQLString},
         customerId: {type: GraphQLString},
+        notes: {type: GraphQLString},
         id: {type: GraphQLID}
     })
 });
@@ -191,6 +192,7 @@ const RegisterType = new GraphQLObjectType({
         password: {type: GraphQLString},
         role: {type: GraphQLString},
         registerDateInMs: {type: GraphQLString},
+        // verified: {type: GraphQLBoolean},
     })
 });
 
@@ -362,6 +364,7 @@ const Mutation = new GraphQLObjectType({
                 address: {type: new GraphQLNonNull(GraphQLString)},
                 status: {type: new GraphQLNonNull(GraphQLString)},
                 customerId: {type: new GraphQLNonNull(GraphQLString)},
+                notes: {type: new GraphQLNonNull(GraphQLString)},
             },
             async resolve(parent, args) {
                 return await business.getOrderManager().makeOrder(args);
@@ -386,6 +389,16 @@ const Mutation = new GraphQLObjectType({
                 return await business.getOrderManager().updateStatusById(args.id, args.status);
             }
         },
+        updateNotes: {
+            type: OrderType,
+            args: {
+                id: {type: new GraphQLNonNull(GraphQLString)},
+                notes: {type: new GraphQLNonNull(GraphQLString)},
+            },
+            async resolve(parent, args) {
+                return await business.getOrderManager().updateNotesById(args.id, args.notes);
+            }
+        },
         updateRole: {
             type: UserType,
             args: {
@@ -404,7 +417,8 @@ const Mutation = new GraphQLObjectType({
                 surname: {type: new GraphQLNonNull(GraphQLString)},
                 role: {type: new GraphQLNonNull(GraphQLString)},
                 password: {type: new GraphQLNonNull(GraphQLString)},
-                registerDateInMs: {type: new GraphQLNonNull(GraphQLString)}
+                registerDateInMs: {type: new GraphQLNonNull(GraphQLString)},
+                // verified: {type: new GraphQLNonNull(GraphQLBoolean)}
             },
             async resolve(parent, args) {
                 return await business.getUserManager(args).createNewOrUpdate(args);

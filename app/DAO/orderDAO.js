@@ -20,6 +20,7 @@ const orderSchema = new mongoose.Schema({
     address: String,
     status: String,
     customerId: String,
+    notes: String,
 }, {
     collection: 'your-orders'
 });
@@ -63,7 +64,8 @@ async function makeOrder(orderDetails) {
         zip: orderDetails.zip,
         address: orderDetails.address,
         status: orderDetails.status,
-        customerId: orderDetails.customerId
+        customerId: orderDetails.customerId,
+        notes: orderDetails.notes,
     });
     if (result) {
         return mongoConverter(result);
@@ -86,6 +88,13 @@ async function updateStatusById(orderId, status) {
     );
 }
 
+async function updateNotesById(orderId, notes) {
+    return OrderModel.findOneAndUpdate(
+        {_id: orderId},
+        {$set: {notes: notes}}
+    );
+}
+
 export default {
     get: get,
     getByUserEmail: getByUserEmail,
@@ -94,5 +103,6 @@ export default {
     deleteLastOrder: deleteLastOrder,
     deleteOrderById: deleteOrderById,
     updateStatusById: updateStatusById,
+    updateNotesById: updateNotesById,
     model: OrderModel,
 };

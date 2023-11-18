@@ -31,6 +31,10 @@ function create() {
     return OrderDAO.updateStatusById(orderId, status);
   }
 
+  function updateNotesById(orderId, notes) {
+    return OrderDAO.updateNotesById(orderId, notes);
+  }
+
   return {
     get: get,
     getOrderByUserEmail: getOrderByUserEmail,
@@ -39,6 +43,7 @@ function create() {
     deleteLastOrder: deleteLastOrder,
     deleteOrderById: deleteOrderById,
     updateStatusById: updateStatusById,
+    updateNotesById: updateNotesById,
   };
 }
 
